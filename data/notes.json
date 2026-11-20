@@ -1,0 +1,32 @@
+[
+  {
+    "id": "database",
+    "text": "The AI agent harness stores run history and evaluation attempts in SQLite.",
+    "tags": ["database", "storage", "sqlite", "history", "run", "attempts"]
+  },
+  {
+    "id": "api",
+    "text": "FastAPI exposes the agent execution, benchmark, health, and run-history HTTP endpoints.",
+    "tags": ["fastapi", "api", "endpoints", "backend", "server"]
+  },
+  {
+    "id": "retry",
+    "text": "The agent retries after evaluator feedback, up to a configurable maximum number of attempts.",
+    "tags": ["retry", "evaluation", "feedback", "self correction", "attempt"]
+  },
+  {
+    "id": "ollama",
+    "text": "Ollama provides an optional local language model for planning and answer generation.",
+    "tags": ["ollama", "llm", "local", "language model"]
+  },
+  {
+    "id": "docker",
+    "text": "Docker Compose runs the FastAPI service and can optionally start an Ollama container.",
+    "tags": ["docker", "compose", "container", "deploy"]
+  },
+  {
+    "id": "http429",
+    "text": "HTTP 429 Too Many Requests is the standard response when an API rate limit is exceeded.",
+    "tags": ["429", "http", "rate limit", "status code", "requests"]
+  }
+]

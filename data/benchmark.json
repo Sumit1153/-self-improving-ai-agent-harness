@@ -1,0 +1,32 @@
+[
+  {
+    "task": "Calculate (18 + 6) * 3",
+    "expected_answer": "72",
+    "match_type": "numeric"
+  },
+  {
+    "task": "Calculate 25 * 4 + 12",
+    "expected_answer": "112",
+    "match_type": "numeric"
+  },
+  {
+    "task": "Calculate (7 + 5) / 4",
+    "expected_answer": "3",
+    "match_type": "numeric"
+  },
+  {
+    "task": "What database stores run history and evaluation attempts?",
+    "expected_answer": "SQLite",
+    "match_type": "contains"
+  },
+  {
+    "task": "Which Python framework exposes the agent HTTP endpoints?",
+    "expected_answer": "FastAPI",
+    "match_type": "contains"
+  },
+  {
+    "task": "What HTTP status code indicates an API rate limit was exceeded?",
+    "expected_answer": "429",
+    "match_type": "contains"
+  }
+]

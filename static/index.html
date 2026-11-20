@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgentLab — Self-Improving Agent Harness</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">↻</span><div>AgentLab <small>AGENT HARNESS</small></div></div>
+      <div class="nav-title">WORKSPACE</div>
+      <a class="nav-link active" href="#playground">▣ &nbsp; Playground</a>
+      <a class="nav-link" href="#benchmark">◫ &nbsp; Benchmarks</a>
+      <a class="nav-link" href="#history">◷ &nbsp; Run history</a>
+      <div class="sidebar-bottom">
+        <div class="status-dot-line"><span class="status-dot"></span><span id="connection">Connecting...</span></div>
+        <div class="subtle" id="provider">Provider: —</div>
+        <a href="/docs" target="_blank" rel="noopener">API Documentation ↗</a>
+      </div>
+    </aside>
+    <main>
+      <header class="topbar"><span>Overview / Agent runs</span><span class="top-date">PYTHON · FASTAPI · SQLITE</span></header>
+      <section class="hero" id="playground">
+        <div class="eyebrow">INTELLIGENT EXECUTION WORKFLOW</div>
+        <h1>Build. Execute. <em>Improve.</em></h1>
+        <p>Test an AI agent that plans tasks, runs constrained tools, evaluates its output, and retries with structured feedback.</p>
+      </section>
+      <section class="stats">
+        <div class="stat"><div>MODEL</div><strong id="model-name">—</strong><span>Current execution engine</span></div>
+        <div class="stat"><div>LAST RUN STATUS</div><strong id="last-status">—</strong><span>Evaluator result</span></div>
+        <div class="stat"><div>LAST RUN ATTEMPTS</div><strong id="last-attempts">—</strong><span>Maximum: 5</span></div>
+        <div class="stat"><div>LAST RUN TOKENS</div><strong id="last-tokens">—</strong><span>Reported by model provider</span></div>
+      </section>
+      <div class="layout">
+        <section class="panel">
+          <div class="panel-heading"><h2>Run an agent task</h2><span class="chip">PLAN → ACT → EVALUATE → RETRY</span></div>
+          <form id="run-form">
+            <label for="task">TASK / INSTRUCTION</label>
+            <textarea id="task" rows="3" required minlength="3" maxlength="500">Calculate (18 + 6) * 3</textarea>
+            <div class="sample-row"><span>Try:</span><button type="button" class="sample" data-task="Calculate (18 + 6) * 3" data-answer="72" data-match="numeric">Arithmetic</button><button type="button" class="sample" data-task="What database stores run history and evaluation attempts?" data-answer="SQLite" data-match="contains">Knowledge lookup</button></div>
+            <div class="form-grid">
+              <div><label for="expected">EXPECTED ANSWER (OPTIONAL)</label><input id="expected" placeholder="e.g. 72" value="72"></div>
+              <div><label for="match">EVALUATION METHOD</label><select id="match"><option value="numeric">Numeric</option><option value="exact">Exact text</option><option value="contains">Contains text</option></select></div>
+              <div><label for="max-attempts">MAX RETRIES / ATTEMPTS</label><select id="max-attempts"><option value="1">1 attempt</option><option value="2">2 attempts</option><option value="3" selected>3 attempts</option><option value="4">4 attempts</option><option value="5">5 attempts</option></select></div>
+            </div>
+            <p class="hint">Without an expected answer, only structural validity is checked. This does not prove factual correctness.</p>
+            <button class="primary" type="submit" id="run-button">▶ &nbsp; Execute agent</button>
+          </form>
+        </section>
+        <section class="panel output-panel">
+          <div class="panel-heading"><h2>Execution trace</h2><span id="trace-badge" class="chip neutral">NO RUN YET</span></div>
+          <div id="output" class="empty-output"><div class="empty-icon">◌</div><strong>Ready to execute</strong><p>Run a task to inspect the plan, tool results, evaluation feedback, and retries.</p></div>
+        </section>
+      </div>
+      <section class="panel benchmark-panel" id="benchmark">
+        <div class="panel-heading benchmark-heading"><div><h2>Baseline vs. harness benchmark</h2><p>Compare one LLM answer without tools against the evaluated tool-using agent.</p></div><button id="benchmark-button" class="secondary">Run 6 sample tasks</button></div>
+        <p class="hint">The offline demo provider is a rule-based simulation. Its benchmark results are for smoke testing, not claims about LLM accuracy.</p>
+        <div id="benchmark-output" class="placeholder">No benchmark has been run yet.</div>
+      </section>
+      <section class="panel history-panel" id="history">
+        <div class="panel-heading"><h2>Recent runs</h2><button class="text-button" id="refresh-history">Refresh ↻</button></div>
+        <div id="history-output" class="placeholder">No runs saved yet.</div>
+      </section>
+      <footer>AGENTLAB / 2026 · Built with FastAPI, SQLite, Ollama integration and Docker · <a href="/docs">Open Swagger API</a></footer>
+    </main>
+  </div>
+</body>
+</html>

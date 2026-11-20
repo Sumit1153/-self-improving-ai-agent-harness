@@ -1,0 +1,22 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      LLM_PROVIDER: ${LLM_PROVIDER:-demo}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:3b}
+      OLLAMA_URL: ${OLLAMA_URL:-http://ollama:11434}
+      DATABASE_PATH: /app/state/runs.db
+    volumes:
+      - agent_data:/app/state
+
+  ollama:
+    image: ollama/ollama:latest
+    profiles: ["llm"]
+    volumes:
+      - ollama_data:/root/.ollama
+
+volumes:
+  agent_data:
+  ollama_data:
